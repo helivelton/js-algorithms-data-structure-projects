@@ -2,40 +2,22 @@
   const converter = (srcNumber) => {
     let romanNumeral = '';
     
-    while(srcNumber >= 1000) {
-      romanNumeral+= 'M';
-      srcNumber-= 1000;
-    }
+    const romanAlgarisms = [
+      {letter: 'M', value: 1000},
+      {letter: 'D', value: 500},
+      {letter: 'C', value: 100},
+      {letter: 'L', value: 50},
+      {letter: 'X', value: 10},
+      {letter: 'V', value: 5},
+      {letter: 'I', value: 1}
+    ];
 
-    while(srcNumber >= 500) {
-      romanNumeral+= 'D';
-      srcNumber-= 500;
-    }
-
-    while(srcNumber >= 100) {
-      romanNumeral+= 'C';
-      srcNumber-= 100;
-    }
-
-    while(srcNumber >= 50) {
-      romanNumeral+= 'L';
-      srcNumber-= 50;
-    }
-
-    while(srcNumber >= 10) {
-      romanNumeral+= 'X';
-      srcNumber-= 10;
-    }
-
-    while(srcNumber >= 5) {
-      romanNumeral+= 'V';
-      srcNumber-= 5;
-    }
-
-    while(srcNumber >= 1) {
-      romanNumeral+= 'I';
-      srcNumber-= 1;
-    }
+    romanAlgarisms.forEach(algarism => {
+      while(srcNumber >= algarism.value) {
+        romanNumeral+= algarism.letter;
+        srcNumber-= algarism.value;
+      }
+    });
 
     romanNumeral = romanNumeral.replace('CCCC', 'CD');
     romanNumeral = romanNumeral.replace('XXXX', 'XL');
